@@ -22,7 +22,7 @@ app.engine('html', nunjucks.render);
 app.set('view engine', 'html');
 nunjucks.configure('views', { noCache: true});
 
-models.db.sync({})
+models.db.sync()
   .then(function() {
     app.listen(3000, function() {
       console.log(chalk.green('server online, port 3000'));
