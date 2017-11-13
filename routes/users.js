@@ -12,7 +12,7 @@ User.get('/', (req, res) => {
 });
 
 User.get('/:id', (req, res) => {
-  models.Page.findOne({
+  models.Page.findAll({
     where: {
       authorId: req.params.id
     }
