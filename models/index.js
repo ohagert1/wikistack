@@ -5,7 +5,7 @@ var db = new Sequelize('postgres://localhost:5432/wikistack'
 
 const Page = db.define('page', {
   title: {type: Sequelize.STRING, allowNull: false},
-  urlTitle: {type: Sequelize.STRING, allowNull: false, isUrl: true},
+  urlTitle: {type: Sequelize.STRING, allowNull: false},
   content: {type: Sequelize.TEXT, allowNull: false},
   status: {type: Sequelize.ENUM('open', 'closed') /*default value??*/ },
 }, {
