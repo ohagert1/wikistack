@@ -1,5 +1,6 @@
 'use strict';
 
+const chalk = require('chalk');
 const express = require('express');
 const morgan = require('morgan');
 const nunjucks = require('nunjucks');
@@ -17,11 +18,14 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 app.use(morgan('dev'));
 app.use(router);
+app.engine('html', nunjucks.render);
+app.set('view engine', 'html');
+nunjucks.configure('views', { noCache: true});
 
 models.db.sync({})
   .then(function() {
     app.listen(3000, function() {
-      console.log('server online, port 3000');
+      console.log(chalk.green('server online, port 3000'));
     });
   })
-  .catch(console.error);
+  .catch(chalk.red(console.error));
